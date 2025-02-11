@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="nohello.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="title">
+        <h1>Whish List</h1>
+      </div>
+      <div class="mainContainer">
+        <div class="listMaker">
+          <form action="/created_list" method="post">
+            <input id="name" type="text" placeholder="상품명" name="name" />
+            <input id="price" type="text" placeholder="가격" name="price" />
+            <input
+              id="quantity"
+              type="text"
+              placeholder="수량"
+              name="quantity"
+            />
+            <button type="submit">추가</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="totalList">
+      <table>
+        <thead>
+          <tr>
+            <th>상품명</th>
+            <th>가격</th>
+            <th>수량</th>
+          </tr>
+        </thead>
+        <tbody id="wishlist-body"></tbody>
+      </table>
+    </div>
+
+    <script>
+      async function fetchWishlist() {
+        try {
+          const response = await fetch("/wishlist");
+          const wishlist = await response.json();
+
+          const tableBody = document.getElementById("wishlist-body");
+          tableBody.innerHTML = "";
+
+          wishlist.forEach(item => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+              <td>${item.name}</td>
+              <td>${item.price}</td>
+              <td>${item.quantity}</td>
+            `;
+
+            tableBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("데이터 가져오기 실패:", error);
+        }
+      }
+
+      // 페이지 로드 시 데이터 가져오기
+      window.onload = fetchWishlist;
+    </script>
+  </body>
+</html>

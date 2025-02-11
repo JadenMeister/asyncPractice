@@ -1,0 +1,57 @@
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 80vw;
+  height: auto;
+  padding: 3%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.mainContainer h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.listMaker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.listMaker form {
+  display: flex;
+  gap: 10px;
+}
+
+.totalList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 5%;
+  width: 80vw;
+  height: auto;
+  padding: 3%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
