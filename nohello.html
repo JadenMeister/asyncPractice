@@ -42,13 +42,13 @@
     </div>
 
     <script>
-      async function fetchWishlist() {
+      async function getList() {
         try {
-          const response = await fetch("/wishlist");
-          const wishlist = await response.json();
+          const response = await fetch("/wishlist"); // /wishlist 요청, 서버에서 응답받기
+          const wishlist = await response.json(); // 서버에서 응답하는 데이터는 json 문자데이터 이기 때문에 이걸 배열로 변환하는 response.json()으로 다시 변환하여 가져와야함
 
           const tableBody = document.getElementById("wishlist-body");
-          tableBody.innerHTML = "";
+          tableBody.innerHTML = ""; // 기존 데이터 초기화
 
           wishlist.forEach(item => {
             const row = document.createElement("tr");
@@ -57,7 +57,7 @@
               <td>${item.name}</td>
               <td>${item.price}</td>
               <td>${item.quantity}</td>
-            `;
+              `;
 
             tableBody.appendChild(row);
           });
@@ -65,9 +65,7 @@
           console.error("데이터 가져오기 실패:", error);
         }
       }
-
-      // 페이지 로드 시 데이터 가져오기
-      window.onload = fetchWishlist;
+      window.onload = getList;
     </script>
   </body>
 </html>

@@ -17,22 +17,23 @@ const server = http.createServer(function (req, res) {
       res.setHeader("Content-Type", "text/css; charset=utf-8");
       res.end(CSS_FILE);
     } else if (req.url === "/wishlist") {
-      console.log(" /wishlist 요청 들어옴"); //확인
+      console.log(" /wishlist 요청 들어옴"); //요청이 들어왓나 확인
       res.setHeader("Content-Type", "application/json; charset=utf-8");
-      res.end(JSON.stringify(wishList)); // 데이터 반환
+      res.end(JSON.stringify(wishList)); // 데이터를 json으로 반환
       console.log(" /wishlist 응답");
     }
   } else if (req.method === "POST" && req.url === "/created_list") {
-    let body = "";
+    let item = "";
 
     req.on("data", chunk => {
-      body += chunk;
+      item += chunk;
     });
 
     req.on("end", () => {
-      const list = querystring.parse(body);
+      // 데이터를 모두 받은 뒤  행동~
+      const list = querystring.parse(item); //URL인코딩 쿼리스트링을 객체로 변환하는 qs.parse()를 이용
       console.log(" 받은 데이터:", list);
-      wishList.push(list);
+      wishList.push(list); // 객체로 변환된 데이터를 wishlist에 추가
       console.log("새 데이터 추가됨:", list);
 
       res.writeHead(302, { Location: "/" }); // 입력 후 새로고침
